@@ -3,9 +3,12 @@ const hbs = require('hbs'); //engine view VE
 const fs = require('fs'); //file system
 const axios = require('axios'); //http library
 
+const port = process.env.PORT || 3000;//heroku
+
 var app = express(); //start of app
 
 //register partials for hbs VE
+//{{> header}}
 hbs.registerPartials(__dirname + '/views/partials');
 //set VE hbs
 app.set('view engine', 'hbs');
@@ -24,11 +27,11 @@ app.use((req, res, next) => {
 });
 
 //when mainetance, winthout next so always will be this website
-app.use((req, res, next) => {
-	res.render('mainetance.hbs', {
-		pageTitle: 'Sorry not valid xd'
-	});
-});
+// app.use((req, res, next) => {
+// 	res.render('mainetance.hbs', {
+// 		pageTitle: 'Sorry not valid xd'
+// 	});
+// });
 
 //all static and vailable for people html css etc
 app.use(express.static(__dirname + '/public'));
@@ -71,4 +74,6 @@ app.get('/bad', (req, res) => {
 });
 
 //port to listening
-app.listen(3000);
+app.listen(port, () => {
+	console.log(`Server is up on : ${port}`)
+});
