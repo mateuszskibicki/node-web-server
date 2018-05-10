@@ -67,6 +67,17 @@ app.get('/about', (req, res) => {
 	});
 });
 
+app.get('/projects', (req, res) => {
+	res.render('projects.hbs', {
+		pageTitle: 'Projects',
+		welcomeMessage: 'Hejo mamejo xd',
+		projects: {
+			first: 'Pomusz',
+			second: 'Makrela'
+		}
+	});
+});
+
 app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage: 'Ups, page not found!!'
